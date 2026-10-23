@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <title>Sonic.EXE Unofficial</title>
+  <meta name="description" content="Friday Night Funkin': Vs Sonic.EXE (Unofficial) — fan-made revival of the 2021 mod, with 50+ remade songs, 20+ characters, and a full achievement system." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sonic.EXE Unofficial" />
+  <meta property="og:description" content="Friday Night Funkin': Vs Sonic.EXE (Unofficial) — fan-made revival of the 2021 mod, with 50+ remade songs, 20+ characters, and a full achievement system." />
+  <meta property="og:image" content="banner/tooslow.webp" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sonic.EXE Unofficial" />
+  <meta name="twitter:description" content="Friday Night Funkin': Vs Sonic.EXE (Unofficial) — fan-made revival of the 2021 mod, with 50+ remade songs, 20+ characters, and a full achievement system." />
+  <meta name="twitter:image" content="banner/tooslow.webp" />
+
+  <link rel="icon" type="image/png" href="icono.png" />
+  <link rel="shortcut icon" type="image/png" href="icono.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="banner/tooslow.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="backdrop" aria-hidden="true">
+    <div class="ambient"></div>
+    <div class="checkers"><div class="checkers-inner"></div></div>
+  </div>
+
+  <div id="warningScreen">
+    <div id="warningBox">
+      <div id="warningTitle">WARNING!</div>
+      <p id="warningLine1">This mod is not for children or those who are easily disturbed.</p>
+      <p id="warningLine2">This mod contains flashing lights and/or imagery that may cause discomfort and/or seizures for those with photosensitive epilepsy.</p>
+      <p id="warningQuestion">WOULD YOU LIKE TO PROCEED ANYWAY?</p>
+      <div id="warningBtns">
+        <button id="warnYes">YES</button>
+        <button id="warnNo">NO</button>
+      </div>
+    </div>
+  </div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">SONIC.EXE <span class="red">UNOFFICIAL</span></span>
+      <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#updates">UPDATES</a></li>
+        <li><a href="#gallery">ACHIEVEMENTS</a></li>
+        <li><a href="#credits">CREDITS</a></li>
+        <li><a href="#download">DOWNLOAD</a></li>
+      </ul>
+      <button class="music-btn" id="musicBtn" aria-label="Music" title="Music">
+        <span class="eq"><i></i><i></i><i></i><i></i></span>
+      </button>
+      <button class="nav-burger" id="burger" aria-label="menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home"     onclick="closeMenu()">HOME</a>
+    <a href="#about"    onclick="closeMenu()">ABOUT</a>
+    <a href="#updates"  onclick="closeMenu()">UPDATES</a>
+    <a href="#gallery"  onclick="closeMenu()">ACHIEVEMENTS</a>
+    <a href="#credits"  onclick="closeMenu()">CREDITS</a>
+    <a href="#download" onclick="closeMenu()">DOWNLOAD</a>
+  </div>
+
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="scanlines"></div>
+    <div class="hero-content">
+      <div class="logo-stack">
+        <img class="logo-ring"    src="sprites/title/logo/ring.webp"    alt="" fetchpriority="high" decoding="async" />
+        <img class="logo-sonic"   src="sprites/title/logo/sonic.webp"   alt="" fetchpriority="high" decoding="async" />
+        <img class="logo-bandana" src="sprites/title/logo/bandana.webp" alt="" fetchpriority="high" decoding="async" />
+        <img class="logo-eyes"    src="sprites/title/logo/eyes.webp"    alt="" fetchpriority="high" decoding="async" />
+      </div>
+      <p class="hero-sub"> READY FOR ROUND 3?</p>
+      <div class="hero-btns">
+        <a href="#download" class="btn btn-red">DOWNLOAD</a>
+        <a href="#gallery"  class="btn btn-outline">ACHIEVEMENTS</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section about-section">
+    <div class="about-split">
+      <div class="about-img">
+        <div class="about-slideshow">
+          <img id="aboutSlide" src="slidfes/fnfpe-rudm-screenshot-1779575905-8dyczabu.webp" alt="Sonic.EXE Unofficial gameplay" />
+        </div>
+      </div>
+      <div class="about-copy">
+        <header class="section-head">
+          <span class="section-index">01</span>
+          <h2 class="section-title">ABOUT THE MOD</h2>
+        </header>
+        <div class="about-text">
+          <p>
+            Ready to play once again...?
+          </p>
+          <p>
+            <strong>Friday Night Funkin': Vs Sonic.EXE (Unofficial)</strong> is a fan-made revival inspired by the iconic 2021 <span class="red">Vs. Sonic.EXE</span> mod. Built to recapture the original's dark atmosphere and nostalgia, this project brings back part of the cancelled content with new reimaginations of its story, songs, and characters.
+          </p>
+          <p>
+            With eerie encounters, revamped visuals, and reimagined tracks, <strong>Vs Sonic.EXE (Unofficial)</strong> aims to deliver both a nostalgic and fresh experience for fans of the original mod.
+          </p>
+          <ul class="about-features">
+            <li>50+ remade songs</li>
+            <li>20+ playable characters / opponents</li>
+            <li>Full achievement system with GameJolt trophies</li>
+            <li>Unique art &amp; animations for every character</li>
+            <li>Multilanguage support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="section download-section">
+    <div class="download-bg"></div>
+    <div class="section-inner">
+      <header class="section-head">
+        <span class="section-index">06</span>
+        <h2 class="section-title">DOWNLOAD</h2>
+        <p class="section-sub">Available now</p>
+      </header>
+      <div class="dl-cards">
+        <a href="https://gamejolt.com/games/sonicexeunofficial/1055030" class="dl-card" target="_blank" rel="noopener">
+          <div class="dl-icon">
+            <svg width="36" height="36" viewBox="0 0 11 9" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;display:block">
+              <rect x="1" y="3" width="9" height="5" fill="#cc0000"/>
+              <rect x="0" y="4" width="1" height="3" fill="#cc0000"/>
+              <rect x="10" y="4" width="1" height="3" fill="#cc0000"/>
+              <rect x="2" y="2" width="3" height="1" fill="#aa0000"/>
+              <rect x="6" y="2" width="3" height="1" fill="#aa0000"/>
+              <rect x="2" y="4" width="1" height="3" fill="#1a0000"/>
+              <rect x="1" y="5" width="3" height="1" fill="#1a0000"/>
+              <rect x="7" y="4" width="1" height="1" fill="#ff4444"/>
+              <rect x="8" y="5" width="1" height="1" fill="#ff4444"/>
+              <rect x="7" y="6" width="1" height="1" fill="#ff4444"/>
+              <rect x="6" y="5" width="1" height="1" fill="#ff4444"/>
+              <rect x="5" y="5" width="1" height="1" fill="#880000"/>
+            </svg>
+          </div>
+          <div class="dl-info">
+            <strong>GAMEJOLT</strong>
+            <span>Play &amp; earn trophies</span>
+          </div>
+          <span class="dl-arrow" aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+      <p class="dl-note">This mod is a fan-made project and is not affiliated with SEGA or the original Sonic.EXE Team.</p>
+    </div>
+  </section>
+
+  <section id="gallery" class="section gallery-section">
+    <div class="section-inner">
+      <div id="achieveBody" class="ach-layout">
+       <aside class="ach-side">
+        <header class="section-head">
+          <span class="section-index">04</span>
+          <h2 class="section-title">ACHIEVEMENTS</h2>
+        </header>
+        <div class="ach-progress">
+          <div class="ach-count"><span id="achCount">0</span><span class="ach-total">/<span id="achTotal">0</span></span></div>
+          <div class="ach-bar"><i id="achBar"></i></div>
+        </div>
+        <div id="gjPanel">
+          <div id="gjLogin">
+            <p class="section-sub">Connect your GameJolt account to see your progress</p>
+            <div id="gjForm">
+              <input id="gjUsername" type="text" placeholder="GameJolt Username" autocomplete="off" spellcheck="false" />
+              <input id="gjToken"    type="password" placeholder="GameJolt Token" autocomplete="off" />
+              <button id="gjSubmit">CONNECT</button>
+            </div>
+            <p id="gjHelp">Get your token at <span class="red">gamejolt.com → Profile Menu → Game Token</span></p>
+          </div>
+          <div id="gjConnected" style="display:none">
+            <span id="gjUser"></span>
+            <button id="gjLogout">DISCONNECT</button>
+          </div>
+          <p id="gjStatus"></p>
+        </div>
+       </aside>
+       <div class="ach-main">
+        <p class="section-sub achieve-sub">Can you unlock them all?</p>
+        <div class="char-grid" id="achieveGrid"></div>
+       </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="updates" class="section updates-section">
+    <div class="section-inner">
+      <header class="section-head">
+        <span class="section-index">02</span>
+        <h2 class="section-title">UPDATES</h2>
+        <p class="section-sub">WHAT'S COMING NEXT</p>
+      </header>
+      <div id="updatesBody">
+        <div class="updates-list">
+          <article class="update-card">
+            <div class="update-marker"><span class="update-tag">V1.5</span></div>
+            <div class="update-content">
+            <img src="updates/udpate 1.5.webp" alt="Update 1.5" loading="lazy" decoding="async" />
+            <div class="update-body">
+              <p>Our first post-launch update is planned to be <strong>Version 1.5</strong>, bringing the <strong>PARALLAX</strong> cast into the mod alongside the <strong>Christmas Special</strong> songs. We'd love to make this update a reality, and we're excited to continue expanding the experience with even more content.</p>
+            </div>
+            </div>
+          </article>
+          <article class="update-card">
+            <div class="update-marker"><span class="update-tag">V2.0</span></div>
+            <div class="update-content">
+            <img src="updates/update 2.webp" alt="Update 2" loading="lazy" decoding="async" />
+            <div class="update-body">
+              <p>Looking even further ahead, <strong>Version 2</strong> is shaping up to be our biggest and most ambitious update yet. It will continue the <strong>Story Mode</strong> campaign with its second chapter, <strong>Overthrow</strong>, where you'll play as <strong>Girlfriend</strong> after she is mysteriously teleported during the Triple Trouble cutscene. Follow her journey as she faces new threats, uncovers hidden truths, and experiences the story from an entirely different perspective. This update will also introduce the remaining members of the <strong>Sound Test</strong> and <strong>File Extensions</strong> cast. Alongside new songs, mechanics, and surprises, our goal is to deliver an experience unlike anything we've created before.</p>
+            </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="credits" class="section credits-section">
+    <div class="section-inner">
+      <header class="section-head">
+        <span class="section-index">05</span>
+        <h2 class="section-title">CREDITS</h2>
+      </header>
+      <div id="creditsBody">
+        <p class="section-sub">The team behind the mod</p>
+        <div class="credits-grid" id="creditsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" dir="ltr">
+    <div class="lb-backdrop"><div class="lb-ambient" id="lbAmbient"></div></div>
+
+    <header class="lb-top">
+      <div class="lb-meta">
+        <span class="lb-counter"><b id="lbIndex">01</b><span>/</span><span id="lbTotal">01</span></span>
+        <span class="lb-path" id="lbPath"></span>
+      </div>
+      <div class="lb-actions">
+        <button class="lb-btn" id="lbZoomBtn" title="Zoom (Z)" aria-label="Zoom">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 2a5 5 0 1 0 3.1 8.9l3.5 3.5 1.1-1.1-3.5-3.5A5 5 0 0 0 7 2Zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7ZM6.25 5v1.25H5v1.5h1.25V9h1.5V7.75H9v-1.5H7.75V5Z"/></svg>
+        </button>
+        <a class="lb-btn" id="lbOpenBtn" href="#" target="_blank" rel="noopener" title="Open original" aria-label="Open original">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5h-1.5V4.6L7.8 9.3 6.7 8.2l4.7-4.7H9V2ZM3 4h4v1.5H4.5v6h6V9H12v4H3V4Z"/></svg>
+        </a>
+        <button class="lb-btn" id="lbFsBtn" title="Fullscreen (F)" aria-label="Fullscreen">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2h4.5v1.5h-3v3H2V2Zm7.5 0H14v4.5h-1.5v-3h-3V2ZM2 9.5h1.5v3h3V14H2V9.5Zm10.5 0H14V14H9.5v-1.5h3v-3Z"/></svg>
+        </button>
+        <button class="lb-btn lb-close" id="lbCloseBtn" title="Close (Esc)" aria-label="Close">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 2.4 4.5 4.5 4.5-4.5 1.1 1.1L9.1 8l4.5 4.5-1.1 1.1L8 9.1l-4.5 4.5-1.1-1.1L6.9 8 2.4 3.5l1.1-1.1Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="lb-stage" id="lbStage">
+      <div class="lb-frame" id="lbFrame"></div>
+      <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.6 2.5 5.1 8l5.5 5.5-1.1 1.1L2.9 8l6.6-6.6 1.1 1.1Z"/></svg>
+      </button>
+      <button class="lb-nav lb-next" id="lbNext" aria-label="Next">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5.4 2.5 5.5 5.5-5.5 5.5 1.1 1.1L13.1 8 6.5 1.4 5.4 2.5Z"/></svg>
+      </button>
+      <div class="lb-loader" id="lbLoader"><i></i><i></i><i></i></div>
+    </div>
+
+    <footer class="lb-bottom">
+      <p class="lb-caption"><span id="lbTitle"></span><span id="lbAuthor"></span></p>
+      <div class="lb-strip" id="lbStrip"></div>
+    </footer>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">SONIC.EXE <span class="red">UNOFFICIAL</span></p>
+      <div class="footer-legal-wrap">
+        <p class="footer-legal">Fan-made FNF mod. Not affiliated with SEGA nor the Original Sonic.exe Team.</p>
+        <p class="footer-legal">Sonic the Hedgehog &copy; SEGA. Friday Night Funkin' &copy; The Funkin' Crew.</p>
+      </div>
+    </div>
+  </footer>
+
+  <audio id="bgMusic" src="song/Site%20Music.mp3" loop preload="none"></audio>
+
+  <script src="lang.js"></script>
+  <script src="achievements-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
