@@ -453,30 +453,52 @@ const observer = new IntersectionObserver((entries) => {
 })();
 
 (function() {
-  const btn    = document.getElementById('cmtSubmit');
-  const status = document.getElementById('cmtStatus');
-  if (!btn || !status) return;
+  const btn     = document.getElementById('cmtSubmit');
+  const status  = document.getElementById('cmtStatus');
+  const nameEl  = document.getElementById('cmtName');
+  const msgEl   = document.getElementById('cmtMsg');
+  const typeEl  = document.getElementById('cmtType');
+  const trapEl  = document.getElementById('cmtWebsite');
+  const countEl = document.getElementById('cmtCount');
+  if (!btn || !status || !nameEl || !msgEl) return;
+
+  const shownAt = Date.now();
+  const COOLDOWN = 60000;
 
   function setStatus(msg, cls) {
     status.textContent = msg;
     status.className   = cls || '';
   }
 
+  function langCode() {
+    return window.currentLang || localStorage.getItem('exeLang') || 'en';
+  }
+
   function getLangStrings() {
-    const code = localStorage.getItem('exeLang') || 'en';
-    return (window.LANGS && window.LANGS[code] && window.LANGS[code].comments) || {
+    const L = (window.LANGS && window.LANGS[langCode()]) || (window.LANGS && window.LANGS.en) || {};
+    return Object.assign({
       errFields: 'Enter your name and a comment.',
       sending:   'Sending...',
       ok:        'Comment sent!',
       errConn:   'Connection failed. Try again.',
-    };
+    }, L.comments || {}, { wait: (L.community && L.community.wait) || 'Wait a moment before sending another comment.' });
   }
 
+  function updateCount() {
+    if (countEl) countEl.textContent = msgEl.value.length + '/' + msgEl.maxLength;
+  }
+  msgEl.addEventListener('input', updateCount);
+  updateCount();
+
   btn.addEventListener('click', async () => {
-    const name    = document.getElementById('cmtName').value.trim();
-    const message = document.getElementById('cmtMsg').value.trim();
+    const name    = nameEl.value.trim();
+    const message = msgEl.value.trim();
     const T = getLangStrings();
     if (!name || !message) { setStatus(T.errFields, 'err'); return; }
+
+    let last = 0;
+    try { last = Number(localStorage.getItem('exeCmtLast')) || 0; } catch {}
+    if (Date.now() - last < COOLDOWN) { setStatus(T.wait, 'err'); return; }
 
     btn.disabled = true;
     setStatus(T.sending);
@@ -485,19 +507,104 @@ const observer = new IntersectionObserver((entries) => {
       const res  = await fetch('/.netlify/functions/comment', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ name, message }),
+        body:    JSON.stringify({
+          name,
+          message,
+          type:    typeEl ? typeEl.value : 'other',
+          lang:    langCode(),
+          website: trapEl ? trapEl.value : '',
+          elapsed: Date.now() - shownAt,
+        }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) { setStatus(data.error || T.errConn, 'err'); return; }
+      try { localStorage.setItem('exeCmtLast', String(Date.now())); } catch {}
       setStatus(T.ok, 'ok');
-      document.getElementById('cmtName').value = '';
-      document.getElementById('cmtMsg').value  = '';
+      nameEl.value = '';
+      msgEl.value  = '';
+      updateCount();
     } catch {
       setStatus(T.errConn, 'err');
     } finally {
       btn.disabled = false;
     }
   });
+})();
+
+(function() {
+  const DISCORD = {
+    server: '1484328619269685268',
+    invite: 'https://discord.gg/YykXDpAvt',
+  };
+
+  const box     = document.getElementById('dcBox');
+  const nameEl  = document.getElementById('dcName');
+  const countEl = document.getElementById('dcCount');
+  const online  = document.getElementById('dcOnline');
+  const members = document.getElementById('dcMembers');
+  const join    = document.getElementById('dcJoin');
+  const note    = document.getElementById('chatNote');
+  if (!box || !join || !note) return;
+
+  let invite = DISCORD.invite;
+
+  function strings() {
+    const langs = window.LANGS || {};
+    const code = window.currentLang || localStorage.getItem('exeLang') || 'en';
+    return (langs[code] && langs[code].chat) || (langs.en && langs.en.chat) || {};
+  }
+
+  function refresh() {
+    const t = strings();
+    if (t.join) join.textContent = t.join;
+    if (t.online) online.textContent = t.online;
+    join.hidden = !invite;
+    if (invite) join.href = invite;
+    box.classList.toggle('empty', !DISCORD.server);
+    box.dataset.soon = t.soon || '';
+    note.textContent = invite ? (t.rules || '') : '';
+  }
+
+  function render(data) {
+    const list = data.members || [];
+    const total = data.presence_count || list.length;
+    if (data.name) nameEl.textContent = data.name;
+    countEl.textContent = total;
+
+    const shown = list.slice(0, 14);
+    members.innerHTML = '';
+    shown.forEach(m => {
+      const li = document.createElement('li');
+      li.title = m.username;
+      const img = document.createElement('img');
+      img.src = m.avatar_url;
+      img.alt = '';
+      img.loading = 'lazy';
+      const dot = document.createElement('i');
+      dot.className = 'dc-status ' + (m.status || 'online');
+      li.append(img, dot);
+      members.appendChild(li);
+    });
+    if (total > shown.length) {
+      const more = document.createElement('li');
+      more.className = 'dc-more';
+      more.textContent = '+' + (total - shown.length);
+      members.appendChild(more);
+    }
+
+    if (!invite && data.instant_invite) invite = data.instant_invite;
+    refresh();
+  }
+
+  refresh();
+
+  if (DISCORD.server)
+    fetch('https://discord.com/api/guilds/' + DISCORD.server + '/widget.json')
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(render)
+      .catch(() => { box.hidden = true; });
+
+  document.addEventListener('langchange', refresh);
 })();
 
 function toggleMiniAccordion(btn) {

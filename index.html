@@ -52,6 +52,7 @@
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#updates">UPDATES</a></li>
         <li><a href="#gallery">ACHIEVEMENTS</a></li>
+        <li><a href="#community">COMMUNITY</a></li>
         <li><a href="#credits">CREDITS</a></li>
         <li><a href="#download">DOWNLOAD</a></li>
       </ul>
@@ -67,6 +68,7 @@
     <a href="#about"    onclick="closeMenu()">ABOUT</a>
     <a href="#updates"  onclick="closeMenu()">UPDATES</a>
     <a href="#gallery"  onclick="closeMenu()">ACHIEVEMENTS</a>
+    <a href="#community" onclick="closeMenu()">COMMUNITY</a>
     <a href="#credits"  onclick="closeMenu()">CREDITS</a>
     <a href="#download" onclick="closeMenu()">DOWNLOAD</a>
   </div>
@@ -229,6 +231,50 @@
     </div>
   </section>
 
+  <section id="community" class="section community-section">
+    <div class="section-inner">
+      <header class="section-head">
+        <span class="section-index">03</span>
+        <h2 class="section-title">COMMUNITY</h2>
+        <p class="section-sub">TALK WITH US</p>
+      </header>
+      <div class="community-grid">
+        <div id="comments" class="community-card">
+          <h3 class="community-title">COMMENTS</h3>
+          <p class="section-sub">Leave a message — it'll appear in our Discord</p>
+          <div class="cmt-form">
+            <div class="cmt-row">
+              <input id="cmtName" type="text" maxlength="80" placeholder="Your name" autocomplete="nickname" spellcheck="false" />
+              <select id="cmtType" aria-label="Type">
+                <option value="other">Comment</option>
+                <option value="idea">Suggestion</option>
+              </select>
+            </div>
+            <textarea id="cmtMsg" maxlength="1000" rows="6" placeholder="Your comment..."></textarea>
+            <input id="cmtWebsite" class="cmt-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="cmt-row cmt-foot">
+              <span id="cmtCount">0/1000</span>
+              <button id="cmtSubmit">SEND</button>
+            </div>
+            <p id="cmtStatus"></p>
+          </div>
+        </div>
+        <div id="chat" class="community-card">
+          <h3 class="community-title">DISCORD</h3>
+          <p class="section-sub" id="chatSub">Chat with players from all over the world on our server</p>
+          <div class="dc-box" id="dcBox">
+            <div class="dc-head">
+              <span class="dc-name" id="dcName">VS SONIC.EXE UNOFFICIAL</span>
+              <span class="dc-online"><i></i><b id="dcCount">0</b> <span id="dcOnline">ONLINE</span></span>
+            </div>
+            <ul class="dc-members" id="dcMembers"></ul>
+          </div>
+          <a id="dcJoin" href="#" target="_blank" rel="noopener" hidden>JOIN OUR DISCORD</a>
+          <p class="chat-note" id="chatNote"></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="credits" class="section credits-section">
     <div class="section-inner">
